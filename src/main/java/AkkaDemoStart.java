@@ -1,19 +1,9 @@
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.actor.Props;
-import akka.dispatch.OnFailure;
-import akka.dispatch.OnSuccess;
-import akka.pattern.Patterns;
-import akka.util.Timeout;
 import com.honwaii.akka.actors.CustomerActor;
 import com.honwaii.akka.actors.DeviceActor;
-import com.honwaii.akka.actors.ForwardActor;
-import com.honwaii.akka.messaes.CustomerInfo;
-import com.honwaii.akka.messaes.DeviceAttr;
-import com.honwaii.akka.messaes.Other;
-import com.honwaii.akka.messaes.OtherMsg;
-import scala.concurrent.Future;
-import scala.concurrent.duration.Duration;
+import com.honwaii.akka.messages.CustomerInfo;
 
 
 public class AkkaDemoStart {

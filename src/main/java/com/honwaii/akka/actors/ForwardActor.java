@@ -3,7 +3,7 @@ package com.honwaii.akka.actors;
 import akka.actor.Props;
 import akka.actor.UntypedActor;
 import akka.japi.Creator;
-import com.honwaii.akka.messaes.CustomerInfo;
+import com.honwaii.akka.messages.CustomerInfo;
 
 public class ForwardActor extends UntypedActor {
     public void onReceive(Object message) throws Throwable, Throwable {

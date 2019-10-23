@@ -1,7 +1,7 @@
 package com.honwaii.akka.actors;
 
 import akka.actor.UntypedActor;
-import com.honwaii.akka.messaes.CustomerInfo;
+import com.honwaii.akka.messages.CustomerInfo;
 
 public class CustomerActor extends UntypedActor {
     @Override

@@ -3,11 +3,10 @@ package com.honwaii.akka.actors;
 import akka.actor.ActorRef;
 import akka.actor.Props;
 import akka.actor.UntypedActor;
-import akka.actor.UntypedActorContext;
 import akka.japi.Creator;
-import com.honwaii.akka.messaes.CustomerInfo;
-import com.honwaii.akka.messaes.DeviceAttr;
-import com.honwaii.akka.messaes.Other;
+import com.honwaii.akka.messages.CustomerInfo;
+import com.honwaii.akka.messages.DeviceAttr;
+import com.honwaii.akka.messages.Other;
 
 public class DeviceActor extends UntypedActor {
 

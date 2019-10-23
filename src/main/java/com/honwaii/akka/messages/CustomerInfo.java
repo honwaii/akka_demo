@@ -1,4 +1,4 @@
-package com.honwaii.akka.messaes;
+package com.honwaii.akka.messages;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
