@@ -5,8 +5,8 @@ import lombok.experimental.Accessors;
 
 @Data
 @Accessors(chain = true)
-public class DeviceAttr {
-    private Long id;
-    private String deviceType;
-    private String deviceName;
+public final class CustomerInfo {
+    private Long Id;
+    private String Name;
+    private String phoneNum;
 }
