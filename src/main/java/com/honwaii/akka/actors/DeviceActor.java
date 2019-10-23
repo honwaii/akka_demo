@@ -6,7 +6,9 @@ import akka.actor.UntypedActor;
 import akka.japi.Creator;
 import com.honwaii.akka.messages.CustomerInfo;
 import com.honwaii.akka.messages.DeviceAttr;
+import com.honwaii.akka.messages.EventMsg;
 import com.honwaii.akka.messages.Other;
+import org.w3c.dom.events.Event;
 
 public class DeviceActor extends UntypedActor {
 
@@ -20,6 +22,9 @@ public class DeviceActor extends UntypedActor {
         } else if (message instanceof CustomerInfo) {
             System.out.println("deviceActor forward msg  to forwardActor...");
             forwardActor.forward(message, getContext());
+        } else if (message instanceof EventMsg) {
+            ActorRef dev = getContext().actorOf(DeviceActor.creatProps(), "childDevice");
+            System.out.println(dev);
         }
     }
 

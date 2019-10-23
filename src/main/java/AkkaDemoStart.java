@@ -4,6 +4,7 @@ import akka.actor.Props;
 import com.honwaii.akka.actors.CustomerActor;
 import com.honwaii.akka.actors.DeviceActor;
 import com.honwaii.akka.messages.CustomerInfo;
+import com.honwaii.akka.messages.EventMsg;
 
 
 public class AkkaDemoStart {
@@ -40,6 +41,18 @@ public class AkkaDemoStart {
         }, system.dispatcher());*/
 //        c.forward
         deviceActor.tell(cusInfo, ActorRef.noSender());
+
+//      3. Actor的层级结构
+        EventMsg eventMsg = new EventMsg();
+        deviceActor.tell(eventMsg, ActorRef.noSender());
+
+//      4. 配置dispatcher
+        ActorRef devActorWithDisPatcher = system.actorOf(DeviceActor.creatProps().withDispatcher("forkjoin-dispatcher"), "devActorWithDisPatcher");
+
+//      5. 邮箱
+        ActorRef devActorWithMailBox = system.actorOf(DeviceActor.creatProps().withMailbox("self-mailbox"), "devActorWithMailBox");
+
+//      6. 消息路由
 
     }
 }
