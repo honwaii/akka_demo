@@ -1,10 +1,20 @@
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.actor.Props;
+import akka.dispatch.OnFailure;
+import akka.dispatch.OnSuccess;
+import akka.pattern.Patterns;
+import akka.util.Timeout;
 import com.honwaii.akka.actors.CustomerActor;
 import com.honwaii.akka.actors.DeviceActor;
+import com.honwaii.akka.actors.ForwardActor;
 import com.honwaii.akka.messaes.CustomerInfo;
 import com.honwaii.akka.messaes.DeviceAttr;
+import com.honwaii.akka.messaes.Other;
+import com.honwaii.akka.messaes.OtherMsg;
+import scala.concurrent.Future;
+import scala.concurrent.duration.Duration;
+
 
 public class AkkaDemoStart {
     public static void main(String[] args) {
@@ -20,9 +30,26 @@ public class AkkaDemoStart {
 //  2. 消息发送
 //        a. tell
         CustomerInfo cusInfo = new CustomerInfo().setId(100001L).setName("Tom").setPhoneNum("15978876969");
-        customerActor.tell(cusInfo, ActorRef.noSender());
+//        customerActor.tell(cusInfo, ActorRef.noSender());
 //        b. ask
-        DeviceAttr devAttr = new DeviceAttr().setId(10001L).setDeviceType("IN3000").setDeviceName("手环");
-        deviceActor.tell(devAttr, ActorRef.noSender());
+/*        DeviceAttr devAttr = new DeviceAttr().setId(10001L).setDeviceType("IN3000").setDeviceName("手环");
+        Other other = new OtherMsg().setMsg("Ask msg Test");
+        Timeout timeout = new Timeout(Duration.create(2, "seconds"));
+        Future<Object> future = Patterns.ask(deviceActor, other, timeout);
+        future.onSuccess(new OnSuccess<Object>() {
+            @Override
+            public void onSuccess(Object result) {
+                System.out.println("received result:" + result);
+            }
+        }, system.dispatcher());
+        future.onFailure(new OnFailure() {
+            @Override
+            public void onFailure(Throwable failure) {
+                System.out.println("执行失败-->" + failure);
+            }
+        }, system.dispatcher());*/
+//        c.forward
+        deviceActor.tell(cusInfo, ActorRef.noSender());
+
     }
 }

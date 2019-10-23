@@ -1,14 +1,26 @@
 package com.honwaii.akka.actors;
 
+import akka.actor.ActorRef;
 import akka.actor.Props;
 import akka.actor.UntypedActor;
+import akka.actor.UntypedActorContext;
 import akka.japi.Creator;
+import com.honwaii.akka.messaes.CustomerInfo;
 import com.honwaii.akka.messaes.DeviceAttr;
+import com.honwaii.akka.messaes.Other;
 
 public class DeviceActor extends UntypedActor {
+
+    private ActorRef forwardActor = getContext().actorOf(ForwardActor.creatProps());
+
     public void onReceive(Object message) throws Throwable, Throwable {
         if (message instanceof DeviceAttr) {
             System.out.println("received device attributes:" + message);
+        } else if (message instanceof Other) {
+            getSender().tell("unsupported msg-->" + message, getSelf());
+        } else if (message instanceof CustomerInfo) {
+            System.out.println("deviceActor forward msg  to forwardActor...");
+            forwardActor.forward(message, getContext());
         }
     }
 

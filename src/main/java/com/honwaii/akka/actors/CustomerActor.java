@@ -10,6 +10,7 @@ public class CustomerActor extends UntypedActor {
             System.out.println("received customer info is --> " + message);
         } else {
             System.out.println("unsupported message.");
+            getSender().tell("received msg.", getSelf());
         }
     }
 }
